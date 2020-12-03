@@ -1,0 +1,74 @@
+﻿@model DAL.ConsultaUsuarioRolResult
+
+@{
+    ViewBag.Title = "Consulta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Consulta de Roles por Usuario</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Id Usuario Rol
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdUsuarioRol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaModificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaModificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioModificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioModificacion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.IdUsuarioRol }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

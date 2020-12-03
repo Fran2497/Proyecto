@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Proyecto.Models.Empresa>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Empresas</h2>
+
+<p>
+    @if (Request.IsAuthenticated && User.IsInRole("Administrador"))
+    {
+        @Html.ActionLink("Crear Empresa", "Crear")
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdEmpresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoIdentificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Identificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sector)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>Acciones</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdEmpresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoIdentificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Identificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sector)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id=item.IdEmpresa }) |
+            @Html.ActionLink("Detalles", "Consulta", new { id=item.IdEmpresa }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.IdEmpresa })
+        </td>
+    </tr>
+}
+
+</table>

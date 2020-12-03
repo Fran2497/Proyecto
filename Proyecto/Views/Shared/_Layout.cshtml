@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @if (!Request.Browser.IsMobileDevice)
+    {
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @if (Request.IsAuthenticated)
+                    {
+                        if (!User.IsInRole("Usuario"))
+                        {
+                            @Html.ActionLink("Inicio", "Index", "Home", new {  }, new { @class = "navbar-brand" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Inicio", "IndexProductos", "Home", new { idEmp = Session["Empresa"] }, new { @class = "navbar-brand" })
+                        }
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Inicio", "Login", "Login", new { area = "" }, new { @class = "navbar-brand" })
+                    }
+                </div>
+
+
+                    <div class="navbar-collapse collapse">
+
+                        <ul class="nav navbar-nav">
+                            @if (Request.IsAuthenticated)
+                            {
+
+                                if (User.IsInRole("Usuario"))
+                                {
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <span class="glyphicon glyphicon-cog"></span> Mantenimientos<b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>@Html.ActionLink("Categorías", "Index", "Categoria")</li>
+                                        </ul>
+                                    </li>
+                                }
+                                else if (User.IsInRole("Supervisor"))
+                                {
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <span class="glyphicon glyphicon-cog"></span> Mantenimientos<b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>@Html.ActionLink("Usuarios", "IndexUsuario", "Usuario")</li>
+                                            <li>@Html.ActionLink("Empresas", "Index", "Empresa")</li>
+                                            <li>@Html.ActionLink("Clientes", "Index", "Cliente")</li>
+                                            <li>@Html.ActionLink("Productos", "Index", "Producto")</li>
+                                            <li>@Html.ActionLink("Sectores", "Index", "Sector")</li>
+                                            <li>@Html.ActionLink("Categorías", "Index", "Categoria")</li>
+                                            <li>@Html.ActionLink("Tipos de Identificación", "Index", "TipoIdentificacion")</li>
+                                        </ul>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <span class="glyphicon glyphicon-cog"></span> Mantenimientos<b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>@Html.ActionLink("Usuarios", "IndexUsuario", "Usuario")</li>
+                                            <li>@Html.ActionLink("Empresas", "Index", "Empresa")</li>
+                                            <li>@Html.ActionLink("Clientes", "Index", "Cliente")</li>
+                                            <li>@Html.ActionLink("Productos", "Index", "Producto")</li>
+                                            <li>@Html.ActionLink("Sectores", "Index", "Sector")</li>
+                                            <li>@Html.ActionLink("Categorías", "Index", "Categoria")</li>
+                                            <li>@Html.ActionLink("Roles", "Index", "Rol")</li>
+                                            <li>@Html.ActionLink("Rol-Usuario", "Index", "Roluser")</li>
+                                            <li>@Html.ActionLink("Tipos de Identificación", "Index", "TipoIdentificacion")</li>
+                                        </ul>
+                                    </li>
+                                }
+                            }
+                        </ul>
+
+
+                        @if (Request.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Usuario"))
+                            {
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <span class="hidden-xs glyphicon glyphicon-user"></span> @Html.ViewContext.HttpContext.User.Identity.Name <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>@Html.ActionLink("Mi cuenta", "IndexUsuario", "Usuario")</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div class="panel-heading">
+                                            <a href="@Url.Action("Salir", "Login")" class="btn btn-danger btn-sm panel-righ">Salir</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li>
+                                        <a>
+                                            <span class="hidden-xs glyphicon glyphicon-user"></span> @Html.ViewContext.HttpContext.User.Identity.Name
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="panel-heading">
+                                            <a href="@Url.Action("Salir", "Login")" class="btn btn-danger btn-sm panel-righ">Salir</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Proyecto Final </p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

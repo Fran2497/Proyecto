@@ -1,0 +1,137 @@
+﻿@model DAL.ConsultaUsuarioResult
+
+@{
+    ViewBag.Title = "Consulta";
+}
+
+<h2>Consulta de Usuarios</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoIdentificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoIdentificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Identificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Identificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellido1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellido1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellido2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellido2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clave)
+        </dt>
+
+        <dd>
+            @ViewBag.Clave
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaModificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaModificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioModificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioModificacion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.IdUsuario }) |
+    @Html.ActionLink("Regresar", "IndexUsuario")
+</p>

@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>QR Generate</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="~/Styles/estilos_login.css" rel="stylesheet" />
+</head>
+<body>
+    
+    <form id="form1" runat="server" action="~/Default" method="post">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                    <ul class="nav navbar-nav" style="color:white; float:left;">
+                        <li>Identificación: @ViewBag.Identificacion</li>
+                        <li>Teléfono: @ViewBag.Telefono</h3>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" style="float:right;">
+                        <a href="@Url.Action("Salir", "Login")" class="btn btn-danger btn-sm panel-righ">Salir</a>
+                    </ul>
+            </div>
+        </div>
+        
+        <div class="container text-center">
+            @if (ViewBag.imageBytes != null)
+            {
+                <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.imageBytes))" style="width:75%" />
+            }
+        </div>
+    </form>
+</body>
+</html>

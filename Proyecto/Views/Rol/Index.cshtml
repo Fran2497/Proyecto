@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Proyecto.Models.Rol>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Roles de Usuario</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Rol", "Crear")
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdRol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdRol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.IdRol }) |
+                @Html.ActionLink("Detalles", "Consulta", new { id = item.IdRol }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdRol })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.ActionLink("Regresar al Menú Principal", "Index", "Home")

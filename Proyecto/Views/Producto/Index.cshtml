@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Proyecto.Models.Producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Productos</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Producto", "Crear")
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+
+            @if (Convert.ToInt32(Session["Roles"]) == 1)
+              {
+                    <td>
+                        @Html.ActionLink("Detalles", "Consulta", new { id = item.IdProducto })
+                    </td>
+              }
+              else
+               {
+                    <td>
+                        @Html.ActionLink("Editar", "Editar", new { id = item.IdProducto }) |
+                        @Html.ActionLink("Detalles", "Consulta", new { id = item.IdProducto })|
+                        @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdProducto })
+                    </td>
+               }
+        </tr>
+    }
+
+</table>
+
+@Html.ActionLink("Regresar al Menú Principal", "Index", "Home")

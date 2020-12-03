@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Proyecto.Models.TipoIdentificacion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tipos de Identificación</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Tipo de Identificacion", "Crear")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTipoIdentificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.IdTipoIdentificacion }) |
+                @Html.ActionLink("Detalles", "Consulta", new { id = item.IdTipoIdentificacion }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdTipoIdentificacion })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.ActionLink("Regresar al menú principal", "Index", "Home")

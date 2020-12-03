@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Proyecto.Models.Sector>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Sectores</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Sector", "Crear")
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdSector)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdSector)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            @if (Convert.ToInt32(Session["Roles"]) == 1)
+            {
+                <td>
+                    @Html.ActionLink("Detalles", "Consulta", new { id = item.IdSector })
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.IdSector }) |
+                    @Html.ActionLink("Detalles", "Consulta", new { id = item.IdSector })|
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdSector })
+                </td>
+            }
+
+        </tr>
+    }
+
+</table>
+
+@Html.ActionLink("Regresar al Menú Principal", "Index", "Home")
