@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Proyecto.Models.Estado>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Estado", "Crear")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdEstado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado_1)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEstado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado_1)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.IdEstado }) |
+                @Html.ActionLink("Detalles", "Consulta", new { id = item.IdEstado }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdEstado })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.ActionLink("Regresar al Menú Principal", "Index", "Home")

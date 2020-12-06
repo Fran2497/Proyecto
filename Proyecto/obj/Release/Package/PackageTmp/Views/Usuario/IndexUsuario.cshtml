@@ -1,0 +1,173 @@
+﻿@model IEnumerable<Proyecto.Models.Usuario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@if (!User.IsInRole("Usuario"))
+{
+    <h2>Usuarios Activos</h2>
+    <p>
+        @Html.ActionLink("Crear Nuevo Usuario", "Crear")
+    </p>
+}
+else
+{
+    <h2>Administración de mi cuenta</h2>
+    <br />
+}
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Identificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellido1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellido2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>Acciones</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        if (User.IsInRole("Usuario"))
+        {
+            if (Session["Identificacion"].Equals(item.Identificacion))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Empresa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Identificacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellido1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellido2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Correo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Editar", new { id = item.IdUsuario }) |
+                        @Html.ActionLink("Detalles", "Consulta", new { id = item.IdUsuario })
+                    </td>
+                </tr>
+            }
+        }
+        else if (User.IsInRole("Administrador"))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empresa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Identificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Correo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.IdUsuario }) |
+                    @Html.ActionLink("Detalles", "Consulta", new { id = item.IdUsuario }) |
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdUsuario })
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empresa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Identificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Correo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.IdUsuario }) |
+                    @Html.ActionLink("Detalles", "Consulta", new { id = item.IdUsuario })
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+<hr />
+
+@Html.ActionLink("Regresar al Menú Principal", "Index", "Home")

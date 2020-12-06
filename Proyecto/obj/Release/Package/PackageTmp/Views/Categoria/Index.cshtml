@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Proyecto.Models.Categoria>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Categorías</h2>
+
+<p>
+    @Html.ActionLink("Crear Nueva Categoría", "Crear")
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCategoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sector)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sector)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+
+             @if (User.IsInRole("Usuario"))
+              {
+                    <td>
+                        @Html.ActionLink("Detalles", "Consulta", new { id = item.IdCategoria }) |
+                        @Html.ActionLink("Editar", "Editar", new { id = item.IdCategoria })
+                    </td>
+              }
+              else
+               {
+                    <td>
+                        @Html.ActionLink("Editar", "Editar", new { id = item.IdCategoria }) |
+                        @Html.ActionLink("Detalles", "Consulta", new { id = item.IdCategoria })|
+                        @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdCategoria })
+                    </td>
+               }
+        </tr>
+    }
+
+</table>
+
+@Html.ActionLink("Regresar al Menú Principal", "Index", "Home")

@@ -150,7 +150,7 @@ namespace Proyecto.Controllers
 
                 if (Request.IsAuthenticated)
                 {
-                    ObjBitacora.RegistraBitacora(Session["Identificacion"].ToString(), "Usuario", "Crear Usuario", "Se muestra vista para crear usuario.", 1);
+                    ObjBitacora.RegistraBitacora("New User", "Usuario", "Crear Usuario", "Se muestra vista para crear usuario.", 1);
                 }
                 else
                 {

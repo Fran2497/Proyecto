@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="PAWEBConnectionString-Web.config Connection String" description="PAWEBConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=fran240197-2020.database.windows.net;Initial Catalog=PAWEB;Persist Security Info=True;User ID=Fran_240197;Password=Saprissa2020" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\frr97\\OneDrive\\Documentos\\Proyecto\\Proyecto\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='PAWEBConnectionString']/@connectionString" />
+  </parameter>
+</parameters>
